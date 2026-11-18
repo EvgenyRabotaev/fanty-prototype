@@ -35,7 +35,7 @@
     <p class="lead" data-i="lead">Каждый тайно отвечает на вопросы «хочу / может / нет». В колоду попадает только то, что совпало. Дальше — тянете карточки, как фанты. Пропуск без штрафа, «стоп» в любой момент.</p>
     <div class="cta">
       <button class="btn primary" data-go="levels" data-i="play">Играть</button>
-      <button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки уровня</button>
+      <button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки</button>
     </div>
   </div>
 
@@ -60,7 +60,7 @@
     <details><summary data-i="q1">Это откровенно?</summary><p data-i="a1">Нет. Задания чувственные, но без графичных описаний. Уровень «Нежно» — про внимание, слова и касания.</p></details>
     <details><summary data-i="q2">Видит ли партнёр мои ответы?</summary><p data-i="a2">Только совпадения. Если вы ответили «нет», партнёр этого не узнает.</p></details>
     <details><summary data-i="q3">Можно пропустить карточку?</summary><p data-i="a3">Да, без штрафа и объяснений. Кнопка «Стоп» завершает вечер в любой момент.</p></details>
-    <details><summary data-i="q4">Сколько это стоит?</summary><p data-i="a4">Уровень «Нежно» бесплатный. Остальные уровни появятся позже.</p></details>
+    <details><summary data-i="q4">Сколько это стоит?</summary><p data-i="a4">Уровень «Нежно» бесплатный. «Тепло», «Горячо» и «Смело» — платные; в прототипе они открыты для теста.</p></details>
   </div>
 </section>
 
@@ -68,23 +68,17 @@
 <section id="v-levels" class="view">
   <button class="back" data-go="home">←</button>
   <h1 data-i="lvT">Выберите уровень</h1>
-  <p class="lead" data-i="lvP">Колода идёт по нарастающей: сначала нежно, потом выше — до выбранного потолка.</p>
-  <div class="levels">
-    <article class="level open"><div class="ico">🌸</div><h3 data-i="l1">Нежно</h3><span class="tag free" data-i="free">бесплатно</span><p data-i="l1p">Комплименты, объятия, разговоры о вас.</p><button class="btn primary" id="startNezhno" data-i="start">Начать вечер</button></article>
-    <article class="level locked"><div class="ico lock" aria-hidden="true">🔒</div><h3 data-i="l2">Тепло</h3><span class="tag" data-i="paid">скоро · платно</span><p data-i="l2p">Поцелуи, массаж, флирт.</p></article>
-    <article class="level locked"><div class="ico lock" aria-hidden="true">🔒</div><h3 data-i="l3">Горячо</h3><span class="tag" data-i="paid">скоро · платно</span><p data-i="l3p">Чувственные задания и ролевые сценки.</p></article>
-    <article class="level locked"><div class="ico lock" aria-hidden="true">🔒</div><h3 data-i="l4">Смело</h3><span class="tag" data-i="paid">скоро · платно</span><p data-i="l4p">Фантазии, только при взаимном «хочу».</p></article>
-  </div>
-  <h2 data-i="teaserT">Что дальше: «Тепло»</h2>
-  <div class="teasers" id="teasers"></div>
-  <div class="cta"><button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки уровня</button><button class="btn ghost" data-go="survey" data-i="demoS">Демо опроса</button></div>
+  <p class="lead" data-i="lvP">Выберите потолок: вечер из 12 карточек начнётся нежно и будет подниматься до него. Или играйте только один уровень.</p>
+  <div class="levels" id="levels"></div>
+  <p class="lead small" id="lvHint"></p>
+  <div class="cta"><button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки</button><button class="btn ghost" data-go="survey" data-i="demoS">Демо опроса</button></div>
 </section>
 
 <!-- GAME -->
 <section id="v-game" class="view">
   <div class="gamebar">
     <button class="back" data-go="levels">←</button>
-    <div class="counter" id="counter">1 / 12</div>
+    <div class="lvbadge" id="lvBadge"></div><div class="counter" id="counter">1 / 12</div>
     <button class="btn small danger" id="stopBtn" data-i="stop">Стоп</button>
   </div>
   <div class="names" id="namesBox">
@@ -116,7 +110,8 @@
 <!-- GALLERY -->
 <section id="v-gallery" class="view">
   <button class="back" data-go="home">←</button>
-  <h1 data-i="galT">Все карточки уровня «Нежно»</h1>
+  <h1 data-i="galT">Все карточки</h1>
+  <div class="filters" id="lvFilters"></div>
   <div class="filters" id="filters"></div>
   <div class="grid" id="grid"></div>
 </section>

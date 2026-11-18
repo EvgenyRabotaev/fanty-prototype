@@ -9,6 +9,6 @@
 cd site
 python -m http.server 8000
 ```
-Откройте http://localhost:8000. Работает и через file://, т.к. карточки лежат в `data/cards.js` (копия `data/cards_nezhno.json`).
+Откройте http://localhost:8000. Работает и через file://, т.к. карточки лежат в `data/cards.js` (копия `data/cards.js`).
 
 Название меняется в `js/app.js` (константа `BRAND`) и в `index.html` (`data-brand`). Все пути относительные — подходит для GitHub Pages.
