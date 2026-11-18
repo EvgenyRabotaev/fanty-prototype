@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Фанты для двоих — игра с заданиями для пар 18+</title>
+<meta name="description" content="Тайный опрос желаний на двух телефонах, колода только из совпадений и карточки-фанты для пар. Нежно, чувственно, без пошлости. 18+.">
+<meta name="rating" content="adult">
+<meta name="theme-color" content="#2a0f24">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Фанты для двоих — игра для пар 18+">
+<meta property="og:description" content="Тайный опрос желаний, колода из совпадений, карточки-фанты. Нежно и без пошлости.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="favicon.svg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="glow g1"></div><div class="glow g2"></div>
+
+<header class="top">
+  <a href="#home" class="logo" data-go="home"><svg width="22" height="22" viewBox="0 0 64 64"><path d="M32 49C14 36 14 20 24 17c5-1 8 2 8 5 0-3 3-6 8-5 10 3 10 19-8 32z" fill="#e8a99a"/></svg> <span id="brand">Фанты для двоих</span></a>
+  <nav>
+    <button class="lang" id="langBtn" aria-label="Language">RU / EN</button>
+  </nav>
+</header>
+
+<main>
+<!-- HOME -->
+<section id="v-home" class="view active">
+  <div class="hero">
+    <p class="eyebrow" data-i="eyebrow">Игра для пар · 18+</p>
+    <h1 data-i="h1">Узнайте, чего хотите оба — и не спрашивая вслух</h1>
+    <p class="lead" data-i="lead">Каждый тайно отвечает на вопросы «хочу / может / нет». В колоду попадает только то, что совпало. Дальше — тянете карточки, как фанты. Пропуск без штрафа, «стоп» в любой момент.</p>
+    <div class="cta">
+      <button class="btn primary" data-go="levels" data-i="play">Играть</button>
+      <button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки уровня</button>
+    </div>
+  </div>
+
+  <h2 data-i="howT">Как это работает</h2>
+  <ol class="steps">
+    <li><span class="num">1</span><h3 data-i="s1t">Тайный опрос</h3><p data-i="s1p">Каждый отвечает на своём телефоне. Ответы партнёра не видны.</p></li>
+    <li><span class="num">2</span><h3 data-i="s2t">Совпадения</h3><p data-i="s2p">Показываем только то, где вы оба сказали «хочу» или «может».</p></li>
+    <li><span class="num">3</span><h3 data-i="s3t">Тянем карточки</h3><p data-i="s3p">Задания по очереди, от нежных к смелым. Можно пропустить.</p></li>
+  </ol>
+
+  <h2 data-i="modesT">Режимы</h2>
+  <div class="modes">
+    <article class="mode"><h3 data-i="m1t">Вместе</h3><p data-i="m1p">Вы рядом, играете по очереди на одном или двух телефонах.</p><button class="btn small primary" data-go="levels" data-i="play">Играть</button></article>
+    <article class="mode soon"><span class="badge" data-i="soon">скоро</span><h3 data-i="m2t">На расстоянии</h3><p data-i="m2p">Комната по ссылке, свои задания для переписки и звонков.</p></article>
+  </div>
+
+  <h2 data-i="exT">Примеры карточек</h2>
+  <div class="examples" id="examples"></div>
+
+  <h2 data-i="faqT">Вопросы и ответы</h2>
+  <div class="faq">
+    <details><summary data-i="q1">Это откровенно?</summary><p data-i="a1">Нет. Задания чувственные, но без графичных описаний. Уровень «Нежно» — про внимание, слова и касания.</p></details>
+    <details><summary data-i="q2">Видит ли партнёр мои ответы?</summary><p data-i="a2">Только совпадения. Если вы ответили «нет», партнёр этого не узнает.</p></details>
+    <details><summary data-i="q3">Можно пропустить карточку?</summary><p data-i="a3">Да, без штрафа и объяснений. Кнопка «Стоп» завершает вечер в любой момент.</p></details>
+    <details><summary data-i="q4">Сколько это стоит?</summary><p data-i="a4">Уровень «Нежно» бесплатный. Остальные уровни появятся позже.</p></details>
+  </div>
+</section>
+
+<!-- LEVELS -->
+<section id="v-levels" class="view">
+  <button class="back" data-go="home">←</button>
+  <h1 data-i="lvT">Выберите уровень</h1>
+  <p class="lead" data-i="lvP">Колода идёт по нарастающей: сначала нежно, потом выше — до выбранного потолка.</p>
+  <div class="levels">
+    <article class="level open"><div class="ico">🌸</div><h3 data-i="l1">Нежно</h3><span class="tag free" data-i="free">бесплатно</span><p data-i="l1p">Комплименты, объятия, разговоры о вас.</p><button class="btn primary" id="startNezhno" data-i="start">Начать вечер</button></article>
+    <article class="level locked"><div class="ico lock" aria-hidden="true">🔒</div><h3 data-i="l2">Тепло</h3><span class="tag" data-i="paid">скоро · платно</span><p data-i="l2p">Поцелуи, массаж, флирт.</p></article>
+    <article class="level locked"><div class="ico lock" aria-hidden="true">🔒</div><h3 data-i="l3">Горячо</h3><span class="tag" data-i="paid">скоро · платно</span><p data-i="l3p">Чувственные задания и ролевые сценки.</p></article>
+    <article class="level locked"><div class="ico lock" aria-hidden="true">🔒</div><h3 data-i="l4">Смело</h3><span class="tag" data-i="paid">скоро · платно</span><p data-i="l4p">Фантазии, только при взаимном «хочу».</p></article>
+  </div>
+  <h2 data-i="teaserT">Что дальше: «Тепло»</h2>
+  <div class="teasers" id="teasers"></div>
+  <div class="cta"><button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки уровня</button><button class="btn ghost" data-go="survey" data-i="demoS">Демо опроса</button></div>
+</section>
+
+<!-- GAME -->
+<section id="v-game" class="view">
+  <div class="gamebar">
+    <button class="back" data-go="levels">←</button>
+    <div class="counter" id="counter">1 / 12</div>
+    <button class="btn small danger" id="stopBtn" data-i="stop">Стоп</button>
+  </div>
+  <div class="names" id="namesBox">
+    <input id="n1" maxlength="20" placeholder="Твоё имя" data-ph="n1ph"><input id="n2" maxlength="20" placeholder="Имя партнёра" data-ph="n2ph">
+  </div>
+  <div class="turn" id="turn"></div>
+  <div class="scene">
+    <div class="card" id="card">
+      <div class="face front" id="cardFront"></div>
+      <div class="face cback"><svg viewBox="0 0 64 64" width="64"><path d="M32 49C14 36 14 20 24 17c5-1 8 2 8 5 0-3 3-6 8-5 10 3 10 19-8 32z" fill="none" stroke="#e8c2b0" stroke-width="2"/></svg><small data-i="tap">нажмите, чтобы открыть</small></div>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="btn ghost" id="skipBtn" data-i="skip">Пропустить</button>
+    <button class="like" id="likeBtn" aria-label="like">♡</button>
+    <button class="btn primary" id="doneBtn" data-i="done">Готово</button>
+  </div>
+</section>
+
+<!-- END -->
+<section id="v-end" class="view">
+  <h1 data-i="endT">Вечер окончен</h1>
+  <p class="lead" id="endP"></p>
+  <h2 data-i="likedT">Понравились</h2>
+  <div class="examples" id="likedList"></div>
+  <div class="cta"><button class="btn primary" id="again" data-i="again">Ещё вечер</button><button class="btn ghost" data-go="home" data-i="home">На главную</button></div>
+</section>
+
+<!-- GALLERY -->
+<section id="v-gallery" class="view">
+  <button class="back" data-go="home">←</button>
+  <h1 data-i="galT">Все карточки уровня «Нежно»</h1>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- SURVEY -->
+<section id="v-survey" class="view">
+  <button class="back" data-go="levels">←</button>
+  <h1 data-i="svT">Демо опроса</h1>
+  <p class="lead"><span class="badge" data-i="soon2">скоро на двух телефонах</span></p>
+  <div class="survey" id="survey"></div>
+</section>
+</main>
+
+<footer class="foot">
+  <p><span id="brand2">Фанты для двоих</span> · <span data-i="f18">Сайт только для совершеннолетних (18+).</span></p>
+  <p class="muted" data-i="fnote">Мы не храним ваши ответы. Все задания добровольные: отказ — без последствий.</p>
+</footer>
+
+<!-- Age gate: text above stays in HTML; this is only an overlay -->
+<div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateT" hidden>
+  <div class="gatebox">
+    <div class="big18">18+</div>
+    <h2 id="gateT" data-i="gT">Вам есть 18 лет?</h2>
+    <p data-i="gP">Сайт содержит чувственные задания для взрослых пар.</p>
+    <div class="cta"><button class="btn primary" id="gateYes" data-i="gYes">Мне есть 18</button><a class="btn ghost" href="https://www.google.com" data-i="gNo">Выйти</a></div>
+  </div>
+</div>
+
+<script src="data/cards.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
