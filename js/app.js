@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 var BRAND={ru:'Фанты для двоих',en:'Fanty for Two'}; // <- change the name here
-var D=window.DECK, CARDS=D.cards, TAGS=D.survey_tags.filter(function(x){return x.level==='nezhno'});
+var D=window.DECK, CARDS=D.cards, TAGS=[];['nezhno','teplo','goryacho','smelo'].forEach(function(l){TAGS=TAGS.concat(D.survey_tags.filter(function(x){return x.level===l}).slice(0,3))});
 var LANG=localStorage.getItem('lang')||((navigator.language||'ru').indexOf('ru')===0?'ru':'en');
 var CAT={'разговор':{en:'Talk',i:'💬'},'прикосновение':{en:'Touch',i:'🤲'},'игра':{en:'Game',i:'🎲'},'флирт':{en:'Flirt',i:'😉'},'воспоминание':{en:'Memory',i:'🌙'},'поцелуи':{en:'Kisses',i:'💋'},'массаж':{en:'Massage',i:'💆'},'шёпот':{en:'Whisper',i:'🤫'},'ощущения':{en:'Sensations',i:'🪶'},'танец':{en:'Dance',i:'💃'},'ролевая':{en:'Role play',i:'🎭'},'приказы':{en:'Orders',i:'🗝️'},'фантазия':{en:'Fantasy',i:'💭'},'места':{en:'Places',i:'🏠'},'фото':{en:'Photo',i:'📷'},'опыт':{en:'New',i:'✨'}};
 var LV=[{id:'nezhno',ru:'Нежно',en:'Gentle',i:'🌸',acc:'#e8a99a',pr:'Комплименты, объятия, разговоры о вас.',pe:'Compliments, hugs, talks about the two of you.',free:1},
@@ -13,6 +13,8 @@ var WHO={'оба':{en:'both'},'один':{en:'one'}};
 var T={en:{eyebrow:'A game for couples · 18+',h1:'Find out what you both want — without asking out loud',lead:'Each of you secretly answers "want / maybe / no". Only the matches go into the deck. Then you draw cards like forfeits. Skip with no penalty, stop any time.',play:'Play',allCards:'All cards',howT:'How it works',s1t:'Secret survey',s1p:'Each answers on their own phone. Your partner can\'t see your answers.',s2t:'Matches',s2p:'We show only what you both marked "want" or "maybe".',s3t:'Draw cards',s3p:'Tasks in turn, from gentle to bolder. You can skip.',modesT:'Modes',m1t:'Together',m1p:'You\'re side by side, playing in turns on one or two phones.',soon:'soon',m2t:'Long distance',m2p:'A room by link, with tasks for chat and calls.',exT:'Example cards',faqT:'FAQ',q1:'Is it explicit?',a1:'No. Tasks are sensual but never graphic. "Gentle" is about attention, words and touch.',q2:'Does my partner see my answers?',a2:'Only matches. If you said "no", your partner never finds out.',q3:'Can I skip a card?',a3:'Yes, no penalty or explanation. "Stop" ends the evening any time.',q4:'How much does it cost?',a4:'"Gentle" is free. "Warm", "Hot" and "Bold" are paid; in the prototype they are open for testing.',lvT:'Choose a level',lvP:'Pick a ceiling: a 12-card evening starts gently and rises up to it. Or play just one level.',l1:'Gentle',l1p:'Compliments, hugs, talks about the two of you.',l2:'Warm',l2p:'Kisses, massage, flirting.',l3:'Hot',l3p:'Sensual tasks and role-play scenes.',l4:'Bold',l4p:'Fantasies, only when both say "want".',free:'free',paid:'soon · paid',start:'Start the evening',teaserT:'Coming next: "Warm"',demoS:'Survey demo',stop:'Stop',tap:'tap to open',skip:'Skip',done:'Done',endT:'Evening is over',likedT:'You liked',again:'Another evening',home:'Home',galT:'All cards',svT:'Survey demo',soon2:'coming soon on two phones',f18:'For adults only (18+).',fnote:'We don\'t store your answers. Every task is voluntary: saying no has no consequences.',gT:'Are you 18 or older?',gP:'This site has sensual tasks for adult couples.',gYes:'I\'m 18+',gNo:'Leave',n1ph:'Your name',n2ph:'Partner\'s name'}};
 
 Object.assign(T.en,{h1a:'Find out what you both want —',h1b:'without asking out loud',lead:'Each of you secretly answers "want / maybe / no" on your own phone. Only the matches go into the deck. Then you draw cards like forfeits. Skip with no penalty, stop any time.',chooseMode:'Choose a level',s2t:'Only matches',s2p:'The deck gets only what you both marked "want" or "maybe". Nobody sees a "no".',s3p:'In turns, from gentle to bolder. 12 cards make one evening.',phYou:'You',phPartner:'Partner',phQ:'A slow dance in each other\'s arms?',phQ2:'A slow dance in each other\'s arms?',lWant:'Want',lMaybe:'Maybe',lNo:'No',lWant2:'Want',lMaybe2:'Maybe',lNo2:'No',phMatch:'It\'s a match!',phCat:'Game',phCard:'Put on a calm song and slow-dance in each other\'s arms for two minutes.',phLv:'🌸 Gentle',gamesT:'Games on one deck of tasks',gm1:'Forfeits',gm1s:'play now',gm2:'Dice',gm3:'Truth or dare',gm4:'Roulette',gm5:'Scripted date',soonA:'soon',soonB:'soon',soonC:'soon',soonD:'soon',soon3:'soon',lvEyebrow:'Levels',modesT:'Choose how hot the evening gets',modesP:'Four levels — from warm talks to bold fantasies. Pick a ceiling: the evening starts gently and slowly rises to it. Two skips in a row and the deck gets softer on its own.',m1p:'You\'re side by side, playing in turns on one or two phones. Timer, skips and "stop" are always at hand.',m2p:'A room by link and one-time code, a separate deck for video calls and chat, a shared timer.',m3t:'Themes for the bold',m3p:'Separate themes on top of the levels. On only if both agree, with a safe word and a "stop" button.',nowTag:'available',exEyebrow:'Cards',exT:'This is what the cards look like',exP:'Examples from the "Gentle" level. Short, clear tasks — never vulgar, always warm.',faqEyebrow:'FAQ',q5:'Do I need to sign up?',a5:'No. We don\'t store your answers — the survey and the deck live only on your phones.',finalT:'Ready for an evening for two?',play2:'Play',navModes:'Levels',navCards:'Cards',navPlay:'Play'});
+Object.assign(T.en,{h1c:'Find out what you both want —',h1d:'without asking out loud',lead2:'A secret survey on two phones, a deck made only of matches — and forfeit cards for an evening for two.',t1t:'Secret survey',t1p:'"want / maybe / no", answers stay hidden',t2t:'Only matches',t2p:'your partner never learns a "no"',t3t:'Draw cards',t3p:'in turns, 12 per evening',f1:'↷ Skip with no penalty',f2:'■ Stop any time',f3:'🔒 We don\'t store answers',pickT:'Pick a level — the card opens right away',moreLv:'More about the levels ↓',leadShort:'Pick a level — the first card opens right away. The secret "want / maybe / no" survey is optional.',lastT:'Same as last time',setT:'Settings',svLink:'Secret survey — optional',setTitle:'Evening settings',setCount:'Cards per evening',setTimer:'Timer',tOff:'Off',tManual:'On tap',tAuto:'Auto',setMode:'How the evening goes',mSingle:'Straight at the level',mCeil:'Warm-up from "Gentle"',setThemes:'Themes for the bold',soonT:'soon',setOk:'Done',svPlay:'Pick a level and play',svReset:'Reset answers',svT:'Secret survey',soon2:'optional · two phones coming soon'});
+var QS={nezhno:{r:'нежно, без смущения',e:'tender, no awkwardness'},teplo:{r:'поцелуи и флирт',e:'kisses and flirting'},goryacho:{r:'чувственно и жарко',e:'sensual and heated'},smelo:{r:'фантазии вдвоём',e:'fantasies for two'}};
 var LVX={nezhno:{dr:'Внимание, слова и объятия. Идеально для начала вечера или если вы давно не играли.',de:'Attention, words and hugs. Perfect to open the evening or if you haven\'t played in a while.'},
 teplo:{dr:'Больше близости: поцелуи, шёпот, массаж и лёгкий флирт с таймером.',de:'More closeness: kisses, whispers, massage and light flirting with a timer.'},
 goryacho:{dr:'Чувственные ощущения, ролевые сценки и игра во власть — только по взаимному согласию.',de:'Sensual sensations, role-play scenes and power play — only by mutual consent.'},
@@ -36,7 +38,7 @@ function applyLang(){
   $('#brand').textContent=$('#brand2').textContent=BRAND[LANG];
   $('#langBtn').textContent=LANG==='en'?'EN / RU':'RU / EN';
   document.title=BRAND[LANG]+(LANG==='en'?' — couples game 18+':' — игра с заданиями для пар 18+');
-  renderStatic();renderLevels();renderFilters();if($('#v-gallery').classList.contains('active'))renderGrid();renderSurvey();
+  renderStatic();renderQuick();renderLevels();renderFilters();if($('#v-gallery').classList.contains('active'))renderGrid();renderSurvey();
   if(game.list.length&&$('#v-game').classList.contains('active'))renderCard(true);
   if($('#v-end').classList.contains('active'))renderEnd();
 }
@@ -99,6 +101,31 @@ function renderHomeLevels(){
     return '<article class="hl" data-level="'+l.id+'" style="--acc:'+l.acc+'"><div class="hl-top"><span class="hl-ico">'+l.i+'</span>'+badge+'</div><h3>'+(en?l.en:l.ru)+'</h3><div class="hl-meta">'+heat+'<span>'+cards.length+(en?' cards':' карточек')+'</span></div><p>'+(en?LVX[l.id].de:LVX[l.id].dr)+'</p><div class="hl-chips">'+chips+'</div>'+btn+'</article>'}).join('');
   $$('#homeLevels [data-b]').forEach(function(b){b.onclick=function(){begin(b.dataset.b,+b.dataset.l)}});
 }
+/* fast start: settings, last choice, quick tiles */
+function lsGet(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}}
+var SET=Object.assign({total:12,timer:'off',mode:'single'},lsGet('fs_set',{}));
+function saveSet(){localStorage.setItem('fs_set',JSON.stringify(SET))}
+function renderQuick(){
+  var en=LANG==='en';
+  $('#quickLevels').innerHTML=LV.map(function(l){
+    var badge=l.free?'<span class="tag free">'+(en?'free':'бесплатно')+'</span>':'<span class="tag paid">'+(en?'paid · open in the prototype':'платно · открыто в прототипе')+'</span>';
+    return '<button class="qtile" data-q="'+l.n+'" data-level="'+l.id+'" style="--acc:'+l.acc+'"><span class="qt-ico">'+l.i+'</span><span class="qt-name">'+(en?l.en:l.ru)+'</span><span class="qt-sub">'+(en?QS[l.id].e:QS[l.id].r)+'</span>'+badge+'<span class="qt-go">→</span></button>'}).join('');
+  $$('#quickLevels .qtile').forEach(function(b){b.onclick=function(){begin(SET.mode,+b.dataset.q)}});
+  var last=lsGet('fs_last',null),lb=$('#lastBtn');
+  if(last&&LV[last.lvl]){var l=LV[last.lvl];lb.hidden=false;lb.style.setProperty('--acc',l.acc);$('#lastIco').textContent=l.i;
+    $('#lastName').textContent=(en?l.en:l.ru)+(last.mode==='ceiling'?(en?' · warm-up':' · с разогревом'):'')+' · '+(last.total||12)+(en?' cards':' карт.');
+    lb.onclick=function(){if(last.total)SET.total=last.total;begin(last.mode,last.lvl)}}else lb.hidden=true;
+  var tm={off:en?'timer off':'без таймера',manual:en?'timer on tap':'таймер по кнопке',auto:en?'auto timer':'авто-таймер'}[SET.timer];
+  $('#setSum').textContent='· '+SET.total+(en?' cards · ':' карт. · ')+tm;
+}
+function renderSheet(){$$('#sheet .seg[data-set]').forEach(function(g){[].forEach.call(g.children,function(b){b.classList.toggle('on',String(SET[g.dataset.set])===b.dataset.v)})})}
+$$('#sheet .seg[data-set] button').forEach(function(b){b.onclick=function(){var k=b.parentNode.dataset.set;SET[k]=k==='total'?+b.dataset.v:b.dataset.v;saveSet();renderSheet();renderQuick()}});
+$('#setBtn').onclick=function(){renderSheet();$('#sheet').hidden=false};
+$('#sheetX').onclick=$('#sheetOk').onclick=function(){$('#sheet').hidden=true};
+$('#sheet').onclick=function(e){if(e.target===this)this.hidden=true};
+/* survey answers (optional): tag -> want/maybe/no */
+var SURV=lsGet('fs_survey',{});
+
 /* game */
 var game={list:[],i:0,liked:{},turn:0,timer:null,sel:{mode:'ceiling',lvl:0},total:12,drop:0,streak:0,used:{}};
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=a[i];a[i]=a[j];a[j]=x}return a}
@@ -112,7 +139,8 @@ function pickCard(p){
   var want=targetLevel(p),order=[want],k;
   for(k=1;k<4;k++){if(want-k>=0)order.push(want-k);if(want+k<=3)order.push(want+k)}
   for(var o=0;o<order.length;o++){
-    var pool=CARDS.filter(function(c){return c.level===LV[order[o]].id&&!game.used[c.id]});
+    var pool=CARDS.filter(function(c){return c.level===LV[order[o]].id&&!game.used[c.id]&&SURV[c.survey_tag]!=='no'});
+    var fav=pool.filter(function(c){return SURV[c.survey_tag]==='want'});if(fav.length&&Math.random()<.6)pool=fav;
     if(pool.length){var c=pool[Math.floor(Math.random()*pool.length)];game.used[c.id]=1;return c}
   }
 }
@@ -121,7 +149,7 @@ function startGame(){
   game.list.push(pickCard(0));
   $('#namesBox').classList.remove('hide');renderCard(false);
 }
-function begin(mode,lvl){game.sel={mode:mode,lvl:lvl};game.list=[];go('game')}
+function begin(mode,lvl){game.sel={mode:mode,lvl:lvl};game.total=SET.total;game.list=[];localStorage.setItem('fs_last',JSON.stringify({mode:mode,lvl:lvl,total:SET.total}));go('game')}
 $('#again').onclick=function(){game.list=[];go('game')};
 function names(){return [$('#n1').value.trim()||(LANG==='en'?'You':'Ты'),$('#n2').value.trim()||(LANG==='en'?'Partner':'Партнёр')]}
 function renderCard(keep){
@@ -132,9 +160,11 @@ function renderCard(keep){
   var who=game.turn===0?(LANG==='en'?'Your turn':'Твой ход'):(LANG==='en'?'Partner\'s turn':'Ход партнёра');
   if($('#n1').value||$('#n2').value)who=LANG==='en'?(n[game.turn]+'\'s turn'):('Ход: '+n[game.turn]);
   $('#turn').textContent=who;
-  var tm=c.timer_sec?'<div class="timer"><button class="btn small ghost" id="tStart">'+(LANG==='en'?'Start timer':'Запустить таймер')+'</button><div class="ring"><svg width="56" height="56"><circle class="bg" cx="28" cy="28" r="24"/><circle class="fg" id="tFg" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="0"/></svg><span id="tNum">'+fmt(c.timer_sec)+'</span></div></div>':'';
+  var tm=c.timer_sec&&SET.timer!=='off'?'<div class="timer"><button class="btn small ghost" id="tStart">'+(LANG==='en'?'Start timer':'Запустить таймер')+'</button><div class="ring"><svg width="56" height="56"><circle class="bg" cx="28" cy="28" r="24"/><circle class="fg" id="tFg" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="0"/></svg><span id="tNum">'+fmt(c.timer_sec)+'</span></div></div>':'';
   $('#cardFront').innerHTML='<div class="head"><span class="cat">'+catName(c.category)+'</span><span class="cico">'+CAT[c.category].i+'</span></div><div class="txt">'+txt(c)+'</div>'+tm+'<span class="who">'+(LANG==='en'?'for ':'')+whoName(c.who)+'</span>';
   var ts=$('#tStart');if(ts)ts.onclick=function(e){e.stopPropagation();runTimer(c.timer_sec)};
+  $('#tmrBtn').classList.toggle('on',SET.timer!=='off');$('#tmrBtn').title=LANG==='en'?'Timer':'Таймер';
+  if(ts&&SET.timer==='auto'&&!keep)setTimeout(function(){if($('#tStart')===ts)runTimer(c.timer_sec)},900);
   $('#likeBtn').classList.toggle('on',!!game.liked[c.id]);$('#likeBtn').textContent=game.liked[c.id]?'♥':'♡';
   var card=$('#card');
   if(!keep){card.classList.remove('flipped');setTimeout(function(){card.classList.add('flipped')},350)}
@@ -144,6 +174,7 @@ function runTimer(total){
   var left=total,fg=$('#tFg'),num=$('#tNum');clearInterval(game.timer);
   game.timer=setInterval(function(){left--;num.textContent=fmt(Math.max(left,0));fg.style.strokeDashoffset=150.8*(1-left/total);if(left<=0){clearInterval(game.timer);if(navigator.vibrate)navigator.vibrate(200)}},1000);
 }
+$('#tmrBtn').onclick=function(){SET.timer=SET.timer==='off'?'manual':'off';saveSet();renderCard(true)};
 $('#card').onclick=function(){this.classList.toggle('flipped')};
 function next(skipped){
   if(skipped===true){game.streak++;if(game.streak>=2){game.drop++;game.streak=0}}else game.streak=0;
@@ -188,12 +219,15 @@ function renderLevels(){
 }
 
 /* survey demo */
-var ans={};
 function renderSurvey(){
-  $('#survey').innerHTML=TAGS.slice(0,5).map(function(x,i){
-    return '<div class="sq"><h3>'+(LANG==='en'?x.question_en:x.question_ru)+'</h3><div class="opts">'+['want','maybe','no'].map(function(k){return '<button class="opt'+(ans[i]===k?' sel':'')+'" data-q="'+i+'" data-k="'+k+'">'+lab(k)+'</button>'}).join('')+'</div></div>'}).join('');
-  $$('.opt').forEach(function(b){b.onclick=function(){ans[b.dataset.q]=b.dataset.k;renderSurvey()}});
+  var en=LANG==='en';
+  $('#survey').innerHTML=TAGS.map(function(x){var lv=LVI[x.level];
+    return '<div class="sq" style="--acc:'+lv.acc+'"><span class="sq-lv">'+lv.i+' '+(en?lv.en:lv.ru)+'</span><h3>'+(en?x.question_en:x.question_ru)+'</h3><div class="opts">'+['want','maybe','no'].map(function(k){return '<button class="opt'+(SURV[x.tag]===k?' sel':'')+'" data-q="'+x.tag+'" data-k="'+k+'">'+lab(k)+'</button>'}).join('')+'</div></div>'}).join('');
+  $$('.opt').forEach(function(b){b.onclick=function(){SURV[b.dataset.q]=b.dataset.k;localStorage.setItem('fs_survey',JSON.stringify(SURV));renderSurvey();renderQuick()}});
+  var no=Object.keys(SURV).filter(function(k){return SURV[k]==='no'}).length,w=Object.keys(SURV).filter(function(k){return SURV[k]==='want'}).length;
+  $('#svNote').textContent=Object.keys(SURV).length?(en?'Saved on this phone. "Want" topics come up more often, "no" topics are left out ('+w+' want · '+no+' no).':'Сохранено на этом телефоне. Темы с «хочу» будут попадаться чаще, с «нет» — не попадутся ('+w+' хочу · '+no+' нет).'):(en?'Answer any questions you like — or skip the survey entirely.':'Ответьте на любые вопросы — или пропустите опрос совсем.');
 }
+$('#svReset').onclick=function(){SURV={};localStorage.removeItem('fs_survey');renderSurvey();renderQuick()};
 
 applyLang();
 var h=location.hash.slice(1);if(['levels','gallery','survey','game'].indexOf(h)>=0)go(h);
