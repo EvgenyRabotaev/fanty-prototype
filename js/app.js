@@ -53,6 +53,19 @@ function go(v){
 }
 document.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(g){e.preventDefault();go(g.dataset.go);return}
   var a=e.target.closest('a[href="#modes"]');if(a){e.preventDefault();if(!$('#v-home').classList.contains('active'))go('home');$('#modes').scrollIntoView({behavior:'smooth'})}});
+/* mobile stacked-deck carousel */
+(function(){var el=$('#examples'),mq=matchMedia('(max-width:760px)'),raf;
+  function fx(){var cs=el.children,best=0,bd=1e9,mid=el.scrollLeft+el.clientWidth/2;
+    for(var i=0;i<cs.length;i++){var c=cs[i];
+      if(!mq.matches){c.style.transform=c.style.zIndex=c.style.filter='';continue}
+      var d=(c.offsetLeft+c.offsetWidth/2-mid)/c.offsetWidth,a=Math.min(Math.abs(d),2);
+      if(Math.abs(d)<bd){bd=Math.abs(d);best=i}
+      c.style.transform='translateY('+(a*18)+'px) rotate('+(Math.max(-2,Math.min(2,d))*5)+'deg) scale('+(1-a*.09)+')';
+      c.style.zIndex=String(100-Math.round(a*10));c.style.filter=a>.05?'brightness('+(1-a*.25)+')':''}
+    $$('#exDots button').forEach(function(b,i){b.classList.toggle('on',i===best)})}
+  window.deckFx=fx;
+  el.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(fx)},{passive:true});
+  window.addEventListener('resize',fx);fx()})();
 window.addEventListener('scroll',function(){document.body.classList.toggle('scrolled',scrollY>10)},{passive:true});
 
 /* age gate */
@@ -69,6 +82,9 @@ function renderStatic(){
   var want=['n-001','n-016','n-030','n-044'],pick=want.map(function(id){return ok.filter(function(c){return c.id===id})[0]}).filter(Boolean);
   if(pick.length<4)pick=[ok[0],ok[4],ok[8],ok[12]];
   $('#examples').innerHTML=pick.map(pcard).join('');
+  $('#exDots').innerHTML=pick.map(function(_,i){return '<button data-d="'+i+'"'+(i===0?' class="on"':'')+' tabindex="-1"></button>'}).join('');
+  $$('#exDots button').forEach(function(b){b.onclick=function(){var el=$('#examples'),c=el.children[+b.dataset.d];el.scrollTo({left:c.offsetLeft-(el.clientWidth-c.offsetWidth)/2,behavior:'smooth'})}});
+  if(window.deckFx)requestAnimationFrame(window.deckFx);
   renderHomeLevels();
 }
 function renderHomeLevels(){

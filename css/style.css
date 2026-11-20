@@ -202,3 +202,17 @@ body.scrolled .top{background:rgba(13,6,16,.72);backdrop-filter:blur(18px);-webk
 .lvchip.on{background:var(--acc,#e8a99a);color:#1a0f10}
 .gcard{border-color:color-mix(in srgb,var(--acc) 45%,transparent)}
 .lvdot{position:absolute;top:14px;right:14px;font-size:11px;color:var(--acc)}
+.dots{display:none}
+#examples{position:relative}
+@media(max-width:760px){
+#examples{display:flex;gap:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none;margin:24px -20px 0;padding:16px 0 44px}
+#examples::before,#examples::after{content:"";flex:0 0 15vw}
+#examples::-webkit-scrollbar{display:none}
+#examples .pcard.ex{flex:0 0 70vw;margin-right:-12vw;scroll-snap-align:center;scroll-snap-stop:always;padding:20px 20px 16px;transform:none;transform-origin:50% 90%;transition:box-shadow .3s;will-change:transform}
+#examples .pcard.ex:last-child{margin-right:0}
+#examples .pcard.ex:hover{box-shadow:0 30px 60px -18px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.08)}
+#examples .pc-txt{font-size:16px;padding:10px 2px}
+.dots{display:flex;justify-content:center;gap:8px}
+.dots button{width:8px;height:8px;border-radius:9px;border:0;padding:0;background:rgba(255,255,255,.25);transition:width .25s,background .25s;cursor:pointer}
+.dots button.on{width:24px;background:var(--pink)}
+}
