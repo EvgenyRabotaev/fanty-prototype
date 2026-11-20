@@ -216,3 +216,8 @@ body.scrolled .top{background:rgba(13,6,16,.72);backdrop-filter:blur(18px);-webk
 .dots button{width:8px;height:8px;border-radius:9px;border:0;padding:0;background:rgba(255,255,255,.25);transition:width .25s,background .25s;cursor:pointer}
 .dots button.on{width:24px;background:var(--pink)}
 }
+/* YesYes wordmark */
+.logo .wm{font-weight:800;letter-spacing:-.03em;font-size:21px}
+.logo .y1{background:linear-gradient(100deg,#ffb3a1,#ff5c8a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo .y2{background:linear-gradient(100deg,#ff7aa8,#b79bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo svg.mark{filter:drop-shadow(0 0 10px rgba(255,92,138,.45))}
