@@ -22,7 +22,7 @@
 <header class="top"><div class="top-in">
   <a href="#home" class="logo" data-go="home"><svg width="22" height="22" viewBox="0 0 64 64"><path d="M32 49C14 36 14 20 24 17c5-1 8 2 8 5 0-3 3-6 8-5 10 3 10 19-8 32z" fill="#e8a99a"/></svg> <span id="brand">Фанты для двоих</span></a>
   <nav>
-    <a href="#modes" class="navlink" data-i="navModes">Уровни</a><a href="#" class="navlink" data-go="gallery" data-i="navCards">Карточки</a><button class="btn primary small navplay" data-go="levels" data-i="navPlay">Играть</button>
+    <a href="#modes" class="navlink" data-i="navModes">Уровни</a><a href="#" class="navlink" data-go="gallery" data-i="navCards">Карточки</a><button class="btn primary small navplay" data-go="home" data-i="navPlay">Играть</button>
     <button class="lang" id="langBtn" aria-label="Language">RU / EN</button>
   </nav>
 </div></header>
@@ -34,17 +34,14 @@
   <div class="hero">
     <div class="hero-text">
       <p class="eyebrow"><span class="dot"></span><span data-i="eyebrow">Игра для пар · 18+</span></p>
-      <h1><span data-i="h1a">Узнайте, чего хотите оба —</span> <span class="grad" data-i="h1b">не спрашивая вслух</span></h1>
-      <p class="lead" data-i="lead">Каждый тайно отвечает на вопросы «хочу / может / нет» на своём телефоне. В колоду попадает только то, что совпало. Дальше — тянете карточки, как фанты. Пропуск без штрафа, «стоп» в любой момент.</p>
-      <div class="cta">
-        <button class="btn primary big" data-go="levels"><span data-i="play">Играть</span> <span class="arr">→</span></button>
-        <a class="btn ghost big" href="#modes" data-i="chooseMode">Выбрать режим</a>
+      <h1><span data-i="h1a">Игра для двоих —</span> <span class="grad" data-i="h1b">начните за одно касание</span></h1>
+      <p class="lead hero-lead" data-i="leadShort">Выберите уровень — первая карточка откроется сразу. Тайный опрос «хочу / может / нет» — по желанию.</p>
+      <button class="btn last-btn" id="lastBtn" hidden><span class="lb-ico" id="lastIco"></span><span><small data-i="lastT">Как в прошлый раз</small><b id="lastName"></b></span><span class="arr">→</span></button>
+      <div class="qs" id="quickLevels"></div>
+      <div class="qs-links">
+        <button class="linkbtn" id="setBtn">⚙︎ <span data-i="setT">Настроить</span> <small id="setSum"></small></button>
+        <button class="linkbtn" data-go="survey">🤫 <span data-i="svLink">Тайный опрос — по желанию</span> <small id="svSum"></small></button>
       </div>
-      <ol class="hsteps">
-        <li><b>1</b><div><h3 data-i="s1t">Тайный опрос</h3><p data-i="s1p">Каждый отвечает на своём телефоне. Ответы партнёра не видны.</p></div></li>
-        <li><b>2</b><div><h3 data-i="s2t">Только совпадения</h3><p data-i="s2p">В колоду идёт то, где вы оба сказали «хочу» или «может». «Нет» никто не увидит.</p></div></li>
-        <li><b>3</b><div><h3 data-i="s3t">Тянете карточки</h3><p data-i="s3p">По очереди, от нежного к смелому. 12 карточек — один вечер.</p></div></li>
-      </ol>
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="phone p1">
@@ -64,6 +61,14 @@
         <div class="pc-foot"><span data-i="phLv">🌸 Нежно</span><span>⏱ 2:00</span></div>
       </div>
     </div>
+  </div>
+
+  <div class="steps-wrap">
+    <ol class="hsteps">
+      <li><b>1</b><div><h3 data-i="s1t">Тайный опрос</h3><p data-i="s1p">Каждый отвечает на своём телефоне. Ответы партнёра не видны.</p></div></li>
+      <li><b>2</b><div><h3 data-i="s2t">Только совпадения</h3><p data-i="s2p">В колоду идёт то, где вы оба сказали «хочу» или «может». «Нет» никто не увидит.</p></div></li>
+      <li><b>3</b><div><h3 data-i="s3t">Тянете карточки</h3><p data-i="s3p">По очереди, от нежного к смелому. 12 карточек — один вечер.</p></div></li>
+    </ol>
   </div>
 
   <!-- games strip -->
@@ -122,7 +127,7 @@
     </div>
     <div class="final-cta">
       <h2 data-i="finalT">Готовы к вечеру вдвоём?</h2>
-      <button class="btn primary big" data-go="levels"><span data-i="play2">Играть</span> <span class="arr">→</span></button>
+      <button class="btn primary big" data-go="home"><span data-i="play2">Играть</span> <span class="arr">→</span></button>
     </div>
   </section>
 </section>
@@ -141,7 +146,7 @@
 <section id="v-game" class="view">
   <div class="gamebar">
     <button class="back" data-go="levels">←</button>
-    <div class="lvbadge" id="lvBadge"></div><div class="counter" id="counter">1 / 12</div>
+    <div class="lvbadge" id="lvBadge"></div><button class="tmrbtn" id="tmrBtn" aria-label="timer">⏱</button><div class="counter" id="counter">1 / 12</div>
     <button class="btn small danger" id="stopBtn" data-i="stop">Стоп</button>
   </div>
   <div class="names" id="namesBox">
@@ -181,10 +186,12 @@
 
 <!-- SURVEY -->
 <section id="v-survey" class="view">
-  <button class="back" data-go="levels">←</button>
-  <h1 data-i="svT">Демо опроса</h1>
-  <p class="lead"><span class="badge" data-i="soon2">скоро на двух телефонах</span></p>
+  <button class="back" data-go="home">←</button>
+  <h1 data-i="svT">Тайный опрос</h1>
+  <p class="lead"><span class="badge" data-i="soon2">по желанию · скоро на двух телефонах</span></p>
   <div class="survey" id="survey"></div>
+  <p class="lead small" id="svNote"></p>
+  <div class="cta"><button class="btn primary" data-go="home" data-i="svPlay">Выбрать уровень и играть</button><button class="btn ghost" id="svReset" data-i="svReset">Сбросить ответы</button></div>
 </section>
 </main>
 
@@ -192,6 +199,17 @@
   <p><span id="brand2">Фанты для двоих</span> · <span data-i="f18">Сайт только для совершеннолетних (18+).</span></p>
   <p class="muted" data-i="fnote">Мы не храним ваши ответы. Все задания добровольные: отказ — без последствий.</p>
 </footer>
+
+<div id="sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetT">
+  <div class="sheet-box">
+    <div class="sheet-head"><h2 id="sheetT" data-i="setTitle">Настройки вечера</h2><button class="back sheet-x" id="sheetX" aria-label="close">✕</button></div>
+    <div class="set-row"><h3 data-i="setCount">Карточек за вечер</h3><div class="seg" data-set="total"><button data-v="8">8</button><button data-v="12">12</button><button data-v="16">16</button><button data-v="20">20</button></div></div>
+    <div class="set-row"><h3 data-i="setTimer">Таймер</h3><div class="seg" data-set="timer"><button data-v="off" data-i="tOff">Выкл</button><button data-v="manual" data-i="tManual">По кнопке</button><button data-v="auto" data-i="tAuto">Сам</button></div></div>
+    <div class="set-row"><h3 data-i="setMode">Как идёт вечер</h3><div class="seg" data-set="mode"><button data-v="single" data-i="mSingle">Сразу с уровня</button><button data-v="ceiling" data-i="mCeil">Разогрев от «Нежно»</button></div></div>
+    <div class="set-row"><h3 data-i="setThemes">Темы для смелых</h3><div class="seg"><button disabled data-i="soonT">скоро</button></div></div>
+    <button class="btn primary sheet-ok" id="sheetOk" data-i="setOk">Готово</button>
+  </div>
+</div>
 
 <!-- Age gate: text above stays in HTML; this is only an overlay -->
 <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateT" hidden>
