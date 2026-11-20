@@ -17,51 +17,113 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="glow g1"></div><div class="glow g2"></div>
+<div class="bgfx" aria-hidden="true"><div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="grain"></div></div>
 
-<header class="top">
+<header class="top"><div class="top-in">
   <a href="#home" class="logo" data-go="home"><svg width="22" height="22" viewBox="0 0 64 64"><path d="M32 49C14 36 14 20 24 17c5-1 8 2 8 5 0-3 3-6 8-5 10 3 10 19-8 32z" fill="#e8a99a"/></svg> <span id="brand">Фанты для двоих</span></a>
   <nav>
+    <a href="#modes" class="navlink" data-i="navModes">Уровни</a><a href="#" class="navlink" data-go="gallery" data-i="navCards">Карточки</a><button class="btn primary small navplay" data-go="levels" data-i="navPlay">Играть</button>
     <button class="lang" id="langBtn" aria-label="Language">RU / EN</button>
   </nav>
-</header>
+</div></header>
 
 <main>
 <!-- HOME -->
 <section id="v-home" class="view active">
+  <!-- 1. HERO -->
   <div class="hero">
-    <p class="eyebrow" data-i="eyebrow">Игра для пар · 18+</p>
-    <h1 data-i="h1">Узнайте, чего хотите оба — и не спрашивая вслух</h1>
-    <p class="lead" data-i="lead">Каждый тайно отвечает на вопросы «хочу / может / нет». В колоду попадает только то, что совпало. Дальше — тянете карточки, как фанты. Пропуск без штрафа, «стоп» в любой момент.</p>
-    <div class="cta">
-      <button class="btn primary" data-go="levels" data-i="play">Играть</button>
-      <button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки</button>
+    <div class="hero-text">
+      <p class="eyebrow"><span class="dot"></span><span data-i="eyebrow">Игра для пар · 18+</span></p>
+      <h1><span data-i="h1a">Узнайте, чего хотите оба —</span> <span class="grad" data-i="h1b">не спрашивая вслух</span></h1>
+      <p class="lead" data-i="lead">Каждый тайно отвечает на вопросы «хочу / может / нет» на своём телефоне. В колоду попадает только то, что совпало. Дальше — тянете карточки, как фанты. Пропуск без штрафа, «стоп» в любой момент.</p>
+      <div class="cta">
+        <button class="btn primary big" data-go="levels"><span data-i="play">Играть</span> <span class="arr">→</span></button>
+        <a class="btn ghost big" href="#modes" data-i="chooseMode">Выбрать режим</a>
+      </div>
+      <ol class="hsteps">
+        <li><b>1</b><div><h3 data-i="s1t">Тайный опрос</h3><p data-i="s1p">Каждый отвечает на своём телефоне. Ответы партнёра не видны.</p></div></li>
+        <li><b>2</b><div><h3 data-i="s2t">Только совпадения</h3><p data-i="s2p">В колоду идёт то, где вы оба сказали «хочу» или «может». «Нет» никто не увидит.</p></div></li>
+        <li><b>3</b><div><h3 data-i="s3t">Тянете карточки</h3><p data-i="s3p">По очереди, от нежного к смелому. 12 карточек — один вечер.</p></div></li>
+      </ol>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="phone p1">
+        <div class="ph-top"><span data-i="phYou">Ты</span><i></i></div>
+        <p class="ph-q" data-i="phQ">Медленный танец в обнимку?</p>
+        <div class="ph-opts"><span class="on" data-i="lWant">Хочу</span><span data-i="lMaybe">Может</span><span data-i="lNo">Нет</span></div>
+      </div>
+      <div class="phone p2">
+        <div class="ph-top"><span data-i="phPartner">Партнёр</span><i></i></div>
+        <p class="ph-q" data-i="phQ2">Медленный танец в обнимку?</p>
+        <div class="ph-opts"><span data-i="lWant2">Хочу</span><span class="on" data-i="lMaybe2">Может</span><span data-i="lNo2">Нет</span></div>
+      </div>
+      <div class="match"><span>♥</span> <span data-i="phMatch">Совпадение!</span></div>
+      <div class="pcard hero-card" style="--acc:#e8a99a">
+        <div class="pc-head"><span class="pc-cat" data-i="phCat">Игра</span><span class="pc-ico">💃</span></div>
+        <p class="pc-txt" data-i="phCard">Включите спокойную песню и две минуты медленно потанцуйте в обнимку.</p>
+        <div class="pc-foot"><span data-i="phLv">🌸 Нежно</span><span>⏱ 2:00</span></div>
+      </div>
     </div>
   </div>
 
-  <h2 data-i="howT">Как это работает</h2>
-  <ol class="steps">
-    <li><span class="num">1</span><h3 data-i="s1t">Тайный опрос</h3><p data-i="s1p">Каждый отвечает на своём телефоне. Ответы партнёра не видны.</p></li>
-    <li><span class="num">2</span><h3 data-i="s2t">Совпадения</h3><p data-i="s2p">Показываем только то, где вы оба сказали «хочу» или «может».</p></li>
-    <li><span class="num">3</span><h3 data-i="s3t">Тянем карточки</h3><p data-i="s3p">Задания по очереди, от нежных к смелым. Можно пропустить.</p></li>
-  </ol>
-
-  <h2 data-i="modesT">Режимы</h2>
-  <div class="modes">
-    <article class="mode"><h3 data-i="m1t">Вместе</h3><p data-i="m1p">Вы рядом, играете по очереди на одном или двух телефонах.</p><button class="btn small primary" data-go="levels" data-i="play">Играть</button></article>
-    <article class="mode soon"><span class="badge" data-i="soon">скоро</span><h3 data-i="m2t">На расстоянии</h3><p data-i="m2p">Комната по ссылке, свои задания для переписки и звонков.</p></article>
+  <!-- games strip -->
+  <div class="games">
+    <p class="games-t" data-i="gamesT">Игры на одной колоде заданий</p>
+    <div class="games-row">
+      <button class="game-chip live" data-go="levels"><span class="gi">🃏</span><span><b data-i="gm1">Фанты</b><small data-i="gm1s">играть сейчас</small></span></button>
+      <div class="game-chip"><span class="gi">🎲</span><span><b data-i="gm2">Кубики</b><small data-i="soonA">скоро</small></span></div>
+      <div class="game-chip"><span class="gi">❓</span><span><b data-i="gm3">Правда или действие</b><small data-i="soonB">скоро</small></span></div>
+      <div class="game-chip"><span class="gi">🎡</span><span><b data-i="gm4">Рулетка</b><small data-i="soonC">скоро</small></span></div>
+      <div class="game-chip"><span class="gi">🕯️</span><span><b data-i="gm5">Свидание по сценарию</b><small data-i="soonD">скоро</small></span></div>
+    </div>
   </div>
 
-  <h2 data-i="exT">Примеры карточек</h2>
-  <div class="examples" id="examples"></div>
+  <!-- 2. MODES / LEVELS -->
+  <section class="block" id="modes">
+    <div class="block-head">
+      <p class="eyebrow"><span class="dot"></span><span data-i="lvEyebrow">Уровни</span></p>
+      <h2 data-i="modesT">Выберите, насколько горячим будет вечер</h2>
+      <p class="lead" data-i="modesP">Четыре уровня — от тёплых разговоров до смелых фантазий. Выберите потолок: вечер начнётся нежно и постепенно поднимется до него. Два пропуска подряд — и колода сама станет мягче.</p>
+    </div>
+    <div class="hlevels" id="homeLevels"></div>
+    <div class="extra-modes">
+      <article class="xmode"><span class="xm-ico">🫂</span><div><h3 data-i="m1t">Вместе</h3><p data-i="m1p">Вы рядом и играете по очереди на одном или двух телефонах. Таймер, пропуски, «стоп» — всё под рукой.</p></div><span class="tag free" data-i="nowTag">доступно</span></article>
+      <article class="xmode"><span class="xm-ico">📡</span><div><h3 data-i="m2t">На расстоянии</h3><p data-i="m2p">Комната по ссылке и одноразовому коду, отдельная колода для видеозвонка и переписки, общий таймер.</p></div><span class="tag" data-i="soon">скоро</span></article>
+      <article class="xmode"><span class="xm-ico">🗝️</span><div><h3 data-i="m3t">Темы для смелых</h3><p data-i="m3p">Отдельные темы поверх уровней. Включаются, только если оба согласны, со стоп-словом и кнопкой «стоп».</p></div><span class="tag" data-i="soon3">скоро</span></article>
+    </div>
+  </section>
 
-  <h2 data-i="faqT">Вопросы и ответы</h2>
-  <div class="faq">
-    <details><summary data-i="q1">Это откровенно?</summary><p data-i="a1">Нет. Задания чувственные, но без графичных описаний. Уровень «Нежно» — про внимание, слова и касания.</p></details>
-    <details><summary data-i="q2">Видит ли партнёр мои ответы?</summary><p data-i="a2">Только совпадения. Если вы ответили «нет», партнёр этого не узнает.</p></details>
-    <details><summary data-i="q3">Можно пропустить карточку?</summary><p data-i="a3">Да, без штрафа и объяснений. Кнопка «Стоп» завершает вечер в любой момент.</p></details>
-    <details><summary data-i="q4">Сколько это стоит?</summary><p data-i="a4">Уровень «Нежно» бесплатный. «Тепло», «Горячо» и «Смело» — платные; в прототипе они открыты для теста.</p></details>
-  </div>
+  <!-- 3. CARD EXAMPLES -->
+  <section class="block">
+    <div class="block-head row">
+      <div>
+        <p class="eyebrow"><span class="dot"></span><span data-i="exEyebrow">Карточки</span></p>
+        <h2 data-i="exT">Так выглядят карточки</h2>
+        <p class="lead" data-i="exP">Примеры с уровня «Нежно». Короткие, понятные задания — без пошлости, но с теплом.</p>
+      </div>
+      <button class="btn ghost" data-go="gallery" data-i="allCards">Все карточки</button>
+    </div>
+    <div class="deck-row" id="examples"></div>
+  </section>
+
+  <!-- 4. FAQ -->
+  <section class="block faq-block">
+    <div class="block-head">
+      <p class="eyebrow"><span class="dot"></span><span data-i="faqEyebrow">FAQ</span></p>
+      <h2 data-i="faqT">Вопросы и ответы</h2>
+    </div>
+    <div class="faq">
+      <details><summary data-i="q1">Это откровенно?</summary><p data-i="a1">Нет. Задания чувственные, но без графичных описаний. Уровень «Нежно» — про внимание, слова и касания.</p></details>
+      <details><summary data-i="q2">Видит ли партнёр мои ответы?</summary><p data-i="a2">Только совпадения. Если вы ответили «нет», партнёр этого не узнает.</p></details>
+      <details><summary data-i="q3">Можно пропустить карточку?</summary><p data-i="a3">Да, без штрафа и объяснений. Кнопка «Стоп» завершает вечер в любой момент.</p></details>
+      <details><summary data-i="q4">Сколько это стоит?</summary><p data-i="a4">Уровень «Нежно» бесплатный. «Тепло», «Горячо» и «Смело» — платные; в прототипе они открыты для теста.</p></details>
+      <details><summary data-i="q5">Нужна ли регистрация?</summary><p data-i="a5">Нет. Мы не храним ваши ответы — опрос и колода живут только на ваших телефонах.</p></details>
+    </div>
+    <div class="final-cta">
+      <h2 data-i="finalT">Готовы к вечеру вдвоём?</h2>
+      <button class="btn primary big" data-go="levels"><span data-i="play2">Играть</span> <span class="arr">→</span></button>
+    </div>
+  </section>
 </section>
 
 <!-- LEVELS -->
