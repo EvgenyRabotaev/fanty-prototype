@@ -1,11 +1,11 @@
 import sys
 from playwright.sync_api import sync_playwright
-base=sys.argv[1].rstrip('/'); tag=sys.argv[2]; S='/workspace/fanty/shots/next_'
+base=sys.argv[1].rstrip('/'); tag=sys.argv[2]; S='/workspace/fanty/shots/en_primary_'
 errs=[]
 with sync_playwright() as p:
     b=p.chromium.launch()
     def ctx(w,h,mobile=False):
-        c=b.new_context(viewport={'width':w,'height':h},is_mobile=mobile,device_scale_factor=1,locale='ru-RU')
+        c=b.new_context(viewport={'width':w,'height':h},is_mobile=mobile,device_scale_factor=1,locale='en-US')
         c.add_init_script("localStorage.setItem('adult','1')")
         pg=c.new_page()
         pg.on('console',lambda m: errs.append((tag,m.type,m.text)) if m.type in('error','warning') else None)
@@ -15,10 +15,10 @@ with sync_playwright() as p:
         return pg
     for w,h,m,n in((1440,900,False,'desktop'),(390,844,True,'mobile')):
         pg=ctx(w,h,m)
-        pg.goto(base+'/'); pg.wait_for_timeout(1200); pg.screenshot(path=f'{S}{tag}_ru_home_{n}.png')
+        pg.goto(base+'/ru/'); pg.wait_for_timeout(1200); pg.screenshot(path=f'{S}{tag}_ru_home_{n}.png'); print(tag,n,'RU h1:',pg.inner_text('h1').replace('\n',' '),'| lang',pg.get_attribute('html','lang'))
         if n=='mobile':
             pg.locator('#examples').scroll_into_view_if_needed(); pg.wait_for_timeout(500); pg.screenshot(path=f'{S}{tag}_carousel_mobile.png')
-        pg.goto(base+'/en/'); pg.wait_for_timeout(1200); pg.screenshot(path=f'{S}{tag}_en_home_{n}.png')
+        pg.goto(base+'/'); pg.wait_for_timeout(1200); pg.screenshot(path=f'{S}{tag}_en_home_{n}.png')
         print(tag,n,'EN h1:',pg.inner_text('h1').replace('\n',' '),'| lang',pg.get_attribute('html','lang'),'| title',pg.title())
         pg.close()
     pg=ctx(390,844,True); pg.goto(base+'/'); pg.wait_for_timeout(800)
@@ -36,6 +36,7 @@ with sync_playwright() as p:
     pg.goto(base+'/#survey'); pg.wait_for_timeout(600); print(tag,'survey view',pg.locator('#v-survey.active').count(), pg.locator('#survey > *').count())
     pg.goto(base+'/#gallery'); pg.wait_for_timeout(600); print(tag,'gallery cards',pg.locator('#grid > *').count())
     # lang switch
-    pg.goto(base+'/'); pg.wait_for_timeout(500); pg.click('#langBtn'); pg.wait_for_timeout(1000); print(tag,'switched url',pg.url)
+    pg.goto(base+'/'); pg.wait_for_timeout(500); pg.click('#langBtn'); pg.wait_for_timeout(1000); print(tag,'switched url',pg.url,'lang',pg.get_attribute('html','lang')); pg.click('#langBtn'); pg.wait_for_timeout(1000); print(tag,'back url',pg.url,'lang',pg.get_attribute('html','lang'))
+    pg.goto(base+'/en/#levels'); pg.wait_for_timeout(1500); print(tag,'/en/ redirect ->',pg.url)
     b.close()
 print(tag,'ERRORS',errs)

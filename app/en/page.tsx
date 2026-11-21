@@ -1,2 +1,2 @@
-import Home from '../../components/Home';
-export default function Page() { return <Home lang="en" />; }
+import RedirectHome from './RedirectHome';
+export default function Page() { return <RedirectHome />; }

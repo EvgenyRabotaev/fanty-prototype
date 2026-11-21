@@ -3,7 +3,7 @@ import { SITE } from '../lib/seo';
 export const dynamic = 'force-static';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: SITE + '/', alternates: { languages: { ru: SITE + '/', en: SITE + '/en/' } } },
-    { url: SITE + '/en/', alternates: { languages: { ru: SITE + '/', en: SITE + '/en/' } } },
+    { url: SITE + '/', alternates: { languages: { en: SITE + '/', ru: SITE + '/ru/' } } },
+    { url: SITE + '/ru/', alternates: { languages: { en: SITE + '/', ru: SITE + '/ru/' } } },
   ];
 }
