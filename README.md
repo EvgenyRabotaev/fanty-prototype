@@ -1,16 +1,8 @@
-# YesYes — прототип
+# YesYes (prototype)
 
-Рабочее название: **YesYes** — «Скажите «да» друг другу». Игра для пар 18+.
-
-Статический прототип игры с фантами для пар 18+: тайный опрос желаний (хочу / может / нет), колода из совпадений, карточки как фанты. Без бэкенда, без сборки: HTML + CSS + JS.
-
-Сейчас есть: главная, выбор уровня, игра на уровне «Нежно» (60 карточек, вечер из 12), галерея карточек, демо опроса, переключатель RU/EN.
-
-## Запуск
-```
-cd site
-python -m http.server 8000
-```
-Откройте http://localhost:8000. Работает и через file://, т.к. карточки лежат в `data/cards.js` (копия `data/cards.js`).
-
-Название меняется в `js/app.js` (константа `BRAND`) и в `index.html` (`data-brand`). Все пути относительные — подходит для GitHub Pages.
+Next.js (App Router, TS) static export, deployed to GitHub Pages by `.github/workflows/pages.yml`.
+- `/` RU, `/en/` EN (hreflang, sitemap, robots, manifest via Next metadata APIs)
+- `lib/legacy-app.js` — game logic ported 1:1 from the vanilla prototype (runs in a client component); `lib/markup.ts` — shared markup; `data/deck.json` — cards
+- Old static version: branch `static-legacy`
+- Local: `npm ci && npm run build` (set `BASE_PATH=""` for root hosting, e.g. Vercel)
+- Next step: split markup into React components, add Supabase/API routes (needs a non-export host such as Vercel).
