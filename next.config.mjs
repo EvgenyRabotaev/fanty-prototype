@@ -1,4 +1,4 @@
-const base = process.env.BASE_PATH ?? '/fanty-prototype';
+const base = process.env.BASE_PATH ?? '';
 /** @type {import('next').NextConfig} */
 export default {
   output: 'export',

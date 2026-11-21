@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-export const SITE = 'https://evgenyrabotaev.github.io/fanty-prototype';
+export const SITE = 'https://yesyesgame.app';
 const copy = {
   ru: {
     title: 'YesYes — скажите «да» друг другу. Игра для пар 18+',
@@ -21,8 +21,8 @@ export function metaFor(lang: 'ru' | 'en'): Metadata {
     metadataBase: new URL(SITE + '/'),
     title: c.title,
     description: c.description,
-    manifest: '/fanty-prototype/manifest.webmanifest',
-    icons: { icon: [{ url: '/fanty-prototype/favicon.svg', type: 'image/svg+xml' }] },
+    manifest: '/manifest.webmanifest',
+    icons: { icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }] },
     other: { rating: 'adult' },
     alternates: { canonical: SITE + c.path, languages: { ru: SITE + '/', en: SITE + '/en/', 'x-default': SITE + '/' } },
     openGraph: { type: 'website', title: c.title, siteName: 'YesYes', description: c.og, locale: c.locale,
