@@ -221,3 +221,14 @@ body.scrolled .top{background:rgba(13,6,16,.72);backdrop-filter:blur(18px);-webk
 .logo .y1{background:linear-gradient(100deg,#ffb3a1,#ff5c8a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .logo .y2{background:linear-gradient(100deg,#ff7aa8,#b79bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .logo svg.mark{filter:drop-shadow(0 0 10px rgba(255,92,138,.45))}
+
+/* fallback / survey flow */
+.svhint{color:var(--muted,#d9c3cf);margin:0 0 12px}.svctl{max-width:520px;display:flex;flex-direction:column;gap:10px;margin-top:16px}.svctl .muted{font-size:13px;text-align:center}
+.svtopics{opacity:.85;line-height:1.5}
+.fbbox{max-width:560px;margin:0 auto;text-align:center;padding-top:20px}.fbico{font-size:42px}
+.fbopts{display:flex;flex-direction:column;gap:10px;margin:22px 0 14px}
+.fbopt{display:flex;flex-direction:column;gap:4px;text-align:left;padding:16px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:var(--glass);color:var(--text);cursor:pointer;font:inherit}
+.fbopt b{font-size:17px}.fbopt span{opacity:.75;font-size:14px}.fbopt:hover{border-color:var(--rose)}
+.warmtag{align-self:flex-start;margin-top:8px;font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(232,169,154,.18);border:1px solid rgba(232,169,154,.4);color:#f3cfc3;white-space:nowrap}
+#v-game .gamebar{position:sticky;top:0;z-index:20;padding:8px 0;backdrop-filter:blur(8px)}
+.safeword{text-align:center}
