@@ -14,7 +14,7 @@ with sync_playwright() as p:
             pg.goto('about:blank'); pg.goto(base+path+'#survey'); pg.wait_for_timeout(700)
             answer(pg,['want']*8); pg.click('#svNext'); pg.wait_for_timeout(200)
             assert pg.locator('.opt.sel').count()==0, 'first answers leaked'
-            answer(pg,['no']*7+['maybe']); pg.click('#svNext'); pg.wait_for_timeout(500)
+            answer(pg,['no']*8); pg.click('#svNext'); pg.wait_for_timeout(500)
             assert pg.locator('#v-fallback.active').count()==1
         low()
         body=pg.inner_text('#v-fallback'); print(lang,'fallback:',body.replace('\n',' | '))
@@ -33,7 +33,7 @@ with sync_playwright() as p:
         # retake from fallback
         pg.click('#fbRetake'); pg.wait_for_timeout(400); assert pg.locator('#v-survey.active').count()==1 and pg.locator('.opt.sel').count()==0
         # --- few matches (some): A want x3 others no ; B same -> expect warm-up cards
-        answer(pg,['want']*3+['no']*5); pg.click('#svNext'); pg.wait_for_timeout(200); answer(pg,['want']*3+['no']*5); pg.click('#svNext'); pg.wait_for_timeout(400)
+        answer(pg,['no']*5+['want']+['no']*2); pg.click('#svNext'); pg.wait_for_timeout(200); answer(pg,['no']*5+['want']+['no']*2); pg.click('#svNext'); pg.wait_for_timeout(400)
         print(lang,'result:',pg.inner_text('#survey').replace('\n',' | '))
         assert pg.locator('#svRetake').count()==1
         pg.click('#svPlay'); pg.wait_for_timeout(1000)
