@@ -7,5 +7,5 @@ export default {
   trailingSlash: true,
   images: { unoptimized: true },
   reactStrictMode: false,
-  env: { NEXT_PUBLIC_BASE_PATH: base },
+  env: { NEXT_PUBLIC_BASE_PATH: base, NEXT_PUBLIC_SITE_URL: process.env.SITE_URL || 'https://yesyesgame.app' },
 };

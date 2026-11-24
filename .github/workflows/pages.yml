@@ -10,6 +10,12 @@ permissions:
 concurrency:
   group: pages
   cancel-in-progress: true
+# Where the site is served. github.io preview now; for yesyesgame.app set
+# BASE_PATH: '', SITE_URL: https://yesyesgame.app, CUSTOM_DOMAIN: yesyesgame.app
+env:
+  BASE_PATH: /fanty-prototype
+  SITE_URL: https://evgenyrabotaev.github.io/fanty-prototype
+  CUSTOM_DOMAIN: ''
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,8 +28,9 @@ jobs:
       - uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
-        env:
-          BASE_PATH: ''
+      - name: CNAME (only when a custom domain is set)
+        if: env.CUSTOM_DOMAIN != ''
+        run: echo "$CUSTOM_DOMAIN" > out/CNAME
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
